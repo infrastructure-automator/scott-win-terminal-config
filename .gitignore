@@ -1,0 +1,6 @@
+## Windows Terminal Backend Files
+elevated-state.json
+state.json
+
+.backups/*
+!.backups/.gitkeep
