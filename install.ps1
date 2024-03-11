@@ -103,7 +103,7 @@ ${profiles_to_redirect} = @(
     ),
     @(
         "Clink Lua Script Redirect", 
-        "~\scoop\apps\clink\current\clink.lua", 
+        "~\AppData\local\clink\oh-my-posh.lua", 
         "${starting_directory}\.backups\.bashrc", 
         "${starting_directory}\redirect-profiles\clink.lua"
     )

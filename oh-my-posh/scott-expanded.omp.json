@@ -103,7 +103,7 @@
                     "template": " \uf0e7 "
                 },
                 {
-                    "type": "exit",
+                    "type": "status",
                     "background": "#00a000",
                     "background_templates": [
                         "{{ if gt .Code 0 }}#c00000{{ end }}"
