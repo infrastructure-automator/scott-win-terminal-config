@@ -13,7 +13,7 @@ Made so I can easily sync Windows Terminal Settings between my Personal, Work, a
 1. Clone Repository
 1. Open a Native Elevated PowerShell Prompt (Not Windows Terminal PowerShell)
 1. Navigate to the copied repository
-1. run `./install.ps1`
+1. Run `./install.ps1`
 
 Note: The Elevated Prompt can be skipped, but manually updating the Windows Terminal Settings JSON will be required.  
 
