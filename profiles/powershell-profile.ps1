@@ -14,6 +14,7 @@ if (Test-Path ${LAST_RUN_SAVE_LOCATION}) { ${LAST_RUN_DATE} = Get-Content ${LAST
 if (!(${LAST_RUN_DATE} -eq ${TODAYS_DATE})) {
     Set-Content -Path ${LAST_RUN_SAVE_LOCATION} -Value (Get-Date).ToString("yyyy-MM-dd")
     scoop update *
+    scoop cleanup *
 }
 
 ## Oh-My-Posh Init
