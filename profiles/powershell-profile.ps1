@@ -46,7 +46,7 @@ function lt {
 ## NeoVIM shortcut
 Set-Alias -Name vim -Value "nvim"
 
-# Quick git Push
+## Quick git Push
 function qpush {
     param([string]${commit_message})
 
@@ -70,4 +70,18 @@ function qpush {
     catch {
         Write-Error "Error occurred during git operations."
     }
+}
+
+## Enable or Disable OpenDNS
+function work {
+    $Open_DNS_Servers=@("208.67.222.222", "208.67.220.220")
+    $Physical_Network_Adapter=(Get-NetAdapter -Name * -Physical | Select-Object -First 1)
+    Set-DnsClientServerAddress -InterfaceAlias $Physical_Network_Adapter.Name -ServerAddresses $Open_DNS_Servers
+    ipconfig /flushdns
+}
+
+function nonwork {
+    $Physical_Network_Adapter=(Get-NetAdapter -Name * -Physical | Select-Object -First 1)
+    Set-DnsClientServerAddress -InterfaceAlias $Physical_Network_Adapter.Name -ResetServerAddresses
+    ipconfig /flushdns
 }
