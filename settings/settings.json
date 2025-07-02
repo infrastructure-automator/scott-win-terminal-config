@@ -71,8 +71,8 @@
         "list": 
         [
             {
-                "backgroundImage": "%USERPROFILE%\\.terminal-config\\icons\\powershell.png",
-                "icon": "%USERPROFILE%\\.terminal-config\\icons\\powershell.png",
+                "backgroundImage": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
+                "icon": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
                 "colorScheme": "Campbell Powershell",
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
@@ -82,8 +82,8 @@
                 "tabColor": "#0000FF"
             },
             {
-                "backgroundImage": "%USERPROFILE%\\.terminal-config\\icons\\powershell.png",
-                "icon": "%USERPROFILE%\\.terminal-config\\icons\\powershell.png",
+                "backgroundImage": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
+                "icon": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
                 "colorScheme": "Campbell Powershell",
                 "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
                 "elevate": true,
@@ -148,6 +148,7 @@
                 "tabColor": "#00FFFF"
             },
             {
+                "backgroundImage": "%USERPROFILE%\\.terminal-config\\icons\\powershell5.png",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "PowerShell 5"
