@@ -69,18 +69,25 @@
                     "style": "powerline"
                 },
                 {
-                    "type": "git",
-                    "background": "#fffb38",
                     "foreground": "#193549",
                     "powerline_symbol": "\ue0b0",
+                    "background": "#fffb38",
+                    "type": "git",
+                    "style": "powerline",
+                    "background_templates": [
+                        "{{ if .Rebase }}#F59E0B{{ end }}",
+                        "{{ if .Merge }}#FCA5A5{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#F472B6{{ end }}",
+                        "{{ if gt .Ahead 0 }}#C4B5FD{{ end }}",
+                        "{{ if gt .Behind 0 }}#93C5FD{{ end }}",
+                        "{{ if or .Working.Changed .Staging.Changed }}#FCD34D{{ end }}"
+                    ],
+                    "template": " {{ if hasPrefix \"feat/\" .Ref }} {{ end }}{{ if hasPrefix \"fix/\" .Ref }} {{ end }}{{ url .UpstreamIcon .UpstreamURL }} {{ trunc 32 .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Rebase }} 󰙯 {{ .Rebase.Current }}/{{ .Rebase.Total }}{{ end }}{{ if .Merge }} 󰘬 {{ end }}{{ if .Detached }} {{ trunc 7 .Commit.Sha }}{{ end }}{{ if or .Working.Changed .Staging.Changed }}  {{ .Working.String }}{{ if and .Working.Changed .Staging.Changed }}|{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} ",
                     "properties": {
                         "fetch_status": true,
-                        "fetch_stash_count": true,
                         "fetch_upstream_icon": true,
-                        "branch_max_length": 35
-                    },
-                    "style": "powerline",
-                    "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uF044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uF046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uF692 {{ .StashCount }}{{ end }} "
+                        "branch_template": "{{ trunc 35 .Branch }}"
+                    }
                 },
                 {
                     "type": "executiontime",
