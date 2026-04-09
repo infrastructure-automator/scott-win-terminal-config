@@ -78,11 +78,17 @@ function work {
     $Open_DNS_Servers=@("208.67.222.222", "208.67.220.220")
     $Physical_Network_Adapter=(Get-NetAdapter -Name * -Physical | Select-Object -First 1)
     Set-DnsClientServerAddress -InterfaceAlias $Physical_Network_Adapter.Name -ServerAddresses $Open_DNS_Servers
+    Disable-NetAdapterBinding -Name $Physical_Network_Adapter.Name -ComponentID ms_tcpip6
     ipconfig /flushdns
 }
 
 function nonwork {
     $Physical_Network_Adapter=(Get-NetAdapter -Name * -Physical | Select-Object -First 1)
     Set-DnsClientServerAddress -InterfaceAlias $Physical_Network_Adapter.Name -ResetServerAddresses
+    Enable-NetAdapterBinding -Name $Physical_Network_Adapter.Name -ComponentID ms_tcpip6
     ipconfig /flushdns
 }
+
+## Update PATH Variable
+$env:PATH = "$env:PATH;C:\Users\Scott\.local\bin"
+$env:CLAUDE_CODE_GIT_BASH_PATH = "C:\Users\Scott\AppData\Local\Microsoft\WindowsApps\bash.exe"
