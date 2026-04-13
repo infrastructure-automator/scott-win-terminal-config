@@ -1,4 +1,4 @@
-$install_location = "~\.terminal-config"
+$install_location = "$env:USERPROFILE\.terminal-config"
 
 $starting_directory = $pwd.Path
 $install_location_resolved = Resolve-Path $install_location

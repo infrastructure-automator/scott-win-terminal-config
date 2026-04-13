@@ -25,4 +25,4 @@ Script Name | Description
 
 ## Screenshot
 Screenshot of the Windows Terminal Setup showing git-bash, PowerShell, Ubuntu WSL2, and Command Prompt
-![Scott's Windows Terminal Screenshot](https://github.com/infrastructure-automator/scott-win-terminal-config/blob/main/screenshot/terminal.png?raw=true)
+![Scott's Windows Terminal Screenshot](https://github.com/MellowWellow/scott-win-terminal-config/blob/main/screenshot/terminal.png?raw=true)

@@ -4,3 +4,8 @@ state.json
 
 .backups/*
 !.backups/.gitkeep
+
+## Sensitive and temporary files
+.env
+*.bak
+*.tmp

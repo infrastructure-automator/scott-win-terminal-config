@@ -18,12 +18,12 @@ MAIN_TEXT=${FORMAT_BOLD_CYAN}
 ## Oh-My-Posh Init
 function dft {
     echo ${NORMAL_TEXT}"Loading Default Prompt (Type \"${HIGHLIGHT_TEXT}eft${NORMAL_TEXT}\" to switch to Expanded Prompt)"${NORMAL_TEXT}
-    eval "$(oh-my-posh --init --shell bash --config ~/.terminal-config/oh-my-posh/scott-default.omp.json )"
+    eval "$(oh-my-posh init bash --config ~/.terminal-config/oh-my-posh/scott-default.omp.json )"
 }
 
 function eft {
     echo ${NORMAL_TEXT}"Loading Expanded Prompt (Type \"${HIGHLIGHT_TEXT}dft${NORMAL_TEXT}\" to switch to Default Prompt)"${NORMAL_TEXT}
-    eval "$(oh-my-posh --init --shell bash --config ~/.terminal-config/oh-my-posh/scott-expanded.omp.json )"
+    eval "$(oh-my-posh init bash --config ~/.terminal-config/oh-my-posh/scott-expanded.omp.json )"
 }
 
 ## Oh-My-Posh Load Default Prompt
@@ -36,9 +36,11 @@ alias la='lsd -Al    2> /dev/null || ls -Al'
 alias lt='lsd --tree 2> /dev/null || ls'
 
 ## Kubectl shortcut
-source <(kubectl completion bash)
-alias k=kubectl
-complete -o default -F __start_kubectl k
+if command -v kubectl &> /dev/null; then
+    source <(kubectl completion bash)
+    alias k=kubectl
+    complete -o default -F __start_kubectl k
+fi
 
 ## NeoVIM shortcut
 alias vim='nvim 2> /dev/null || vim'

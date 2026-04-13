@@ -7,7 +7,7 @@ ${NORMAL_TEXT_COLOR} = "White"
 ${HIGHLIGHT_TEXT_COLOR} = "Yellow"
 
 ## Daily Update Script
-${LAST_RUN_SAVE_LOCATION} = "~\.terminal-config\last-update-script-run.txt"
+${LAST_RUN_SAVE_LOCATION} = "$env:USERPROFILE\.terminal-config\last-update-script-run.txt"
 ${TODAYS_DATE} = (Get-Date).ToString("yyyy-MM-dd")
 if (Test-Path ${LAST_RUN_SAVE_LOCATION}) { ${LAST_RUN_DATE} = Get-Content ${LAST_RUN_SAVE_LOCATION} }
 
@@ -22,14 +22,14 @@ function dft {
     Write-Host -ForegroundColor ${NORMAL_TEXT_COLOR} "Loading Default Prompt (Type `"" -NoNewline
     Write-Host -ForegroundColor ${HIGHLIGHT_TEXT_COLOR} "eft" -NoNewline
     Write-Host -ForegroundColor ${NORMAL_TEXT_COLOR} "`" to switch to Expanded Prompt)"
-    oh-my-posh init pwsh --config "~\.terminal-config\oh-my-posh\scott-default.omp.json" | Invoke-Expression    
+    oh-my-posh init pwsh --config "$env:USERPROFILE\.terminal-config\oh-my-posh\scott-default.omp.json" | Invoke-Expression    
 }
 
 function eft {
     Write-Host -ForegroundColor ${NORMAL_TEXT_COLOR} "Loading Expanded Prompt (Type `"" -NoNewline
     Write-Host -ForegroundColor ${HIGHLIGHT_TEXT_COLOR} "dft" -NoNewline
     Write-Host -ForegroundColor ${NORMAL_TEXT_COLOR} "`" to switch to Default Prompt)"
-    oh-my-posh init pwsh --config "~\.terminal-config\oh-my-posh\scott-expanded.omp.json" | Invoke-Expression
+    oh-my-posh init pwsh --config "$env:USERPROFILE\.terminal-config\oh-my-posh\scott-expanded.omp.json" | Invoke-Expression
 }
 
 ## Load Default Oh-My-Posh Prompt
@@ -90,5 +90,5 @@ function nonwork {
 }
 
 ## Update PATH Variable
-$env:PATH = "$env:PATH;C:\Users\Scott\.local\bin"
-$env:CLAUDE_CODE_GIT_BASH_PATH = "C:\Users\Scott\AppData\Local\Microsoft\WindowsApps\bash.exe"
+$env:PATH = "$env:PATH;$env:USERPROFILE\.local\bin"
+$env:CLAUDE_CODE_GIT_BASH_PATH = "$env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\bash.exe"

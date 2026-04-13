@@ -2,7 +2,7 @@
 ## Install Scott's Windows Terminal Settings ##
 ###############################################
 
-${install_location} = "~\.terminal-config"
+${install_location} = "$env:USERPROFILE\.terminal-config"
 
 ## Cosmetics
 ${Normal_Text_Color} = "White"
@@ -85,7 +85,7 @@ function profile-update {
 ${profiles_to_redirect} = @(
     @(
         "Windows Terminal Settings", 
-        "~\scoop\apps\windows-terminal\current\settings\settings.json", 
+        "$env:USERPROFILE\scoop\apps\windows-terminal\current\settings\settings.json",
         "${starting_directory}\.backups\settings.json", 
         "${starting_directory}\settings\settings.json"
     ),
@@ -97,14 +97,14 @@ ${profiles_to_redirect} = @(
     ),
     @(
         "Git Bash Profile Redirect", 
-        "~\.bashrc", 
+        "$env:USERPROFILE\.bashrc",
         "${starting_directory}\.backups\.bashrc", 
         "${starting_directory}\redirect-profiles\git-bash.bashrc"
     ),
     @(
         "Clink Lua Script Redirect", 
-        "~\AppData\local\clink\oh-my-posh.lua", 
-        "${starting_directory}\.backups\.bashrc", 
+        "$env:USERPROFILE\AppData\local\clink\oh-my-posh.lua",
+        "${starting_directory}\.backups\oh-my-posh.lua",
         "${starting_directory}\redirect-profiles\clink.lua"
     )
 )
@@ -120,7 +120,12 @@ foreach (${target_profile} in ${profiles_to_redirect}) {
 Write-Host
 Write-Host -ForegroundColor ${Normal_Text_Color} "Disable Git editing line endings"
 Write-Host -ForegroundColor ${Command_Text_Color} "git config --system core.autocrlf false"
-git config --system core.autocrlf false
+git config --system core.autocrlf false 2>$null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host -ForegroundColor ${Error_Text_Color} "Failed to set system git config (requires elevation). Falling back to global config."
+    Write-Host -ForegroundColor ${Command_Text_Color} "git config --global core.autocrlf false"
+    git config --global core.autocrlf false
+}
 
 function setup-redirect-wsl-profile {
     param (
@@ -140,16 +145,28 @@ ${wsl_distributions} = @(
     "Debian"
 )
 
-foreach (${distributions} in ${wsl_distributions}) {
-    setup-redirect-wsl-profile -wsl_distribution ${distributions}
+${installed_wsl_distributions} = (wsl --list --quiet 2>$null) | ForEach-Object { $_.Trim("`0") } | Where-Object { $_ -ne "" }
+
+foreach (${distribution} in ${wsl_distributions}) {
+    if (${installed_wsl_distributions} -contains ${distribution}) {
+        setup-redirect-wsl-profile -wsl_distribution ${distribution}
+    } else {
+        Write-Host -ForegroundColor ${Error_Text_Color} "WSL distribution '${distribution}' not found. Skipping."
+    }
 }
 
 if (Test-Path ${install_location}) {
     Write-Host
     Write-Host -ForegroundColor ${Highlight_Text_Color} "Removing old Terminal Settings: "
-    Write-Host -ForegroundColor ${Command_Text_Color} "Remove-Item -Path ${install_location} -Recurse -Force -ErrorAction SilentlyContinue"
+    Write-Host -ForegroundColor ${Command_Text_Color} "Remove-Item -Path ${install_location} -Recurse -Force"
     Write-Host
-    Remove-Item -Path ${install_location} -Recurse -Force -ErrorAction SilentlyContinue
+    try {
+        Remove-Item -Path ${install_location} -Recurse -Force -ErrorAction Stop
+    } catch {
+        Write-Host -ForegroundColor ${Error_Text_Color} "Failed to remove ${install_location}: $_"
+        Write-Host -ForegroundColor ${Error_Text_Color} "Please close any applications using files in this directory and try again."
+        return
+    }
 }
 
 Write-Host
