@@ -81,23 +81,23 @@
         [
             {
                 "backgroundImage": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
-                "icon": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
                 "colorScheme": "Campbell Powershell",
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
+                "icon": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
                 "name": "PowerShell 7",
-                "startingDirectory": "%USERPROFILE%",
                 "source": "Windows.Terminal.PowershellCore",
+                "startingDirectory": "%USERPROFILE%",
                 "tabColor": "#0000FF"
             },
             {
                 "backgroundImage": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
-                "icon": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
                 "colorScheme": "Campbell Powershell",
-                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
+                "commandline": "pwsh.exe -NoLogo",
                 "elevate": true,
                 "guid": "{341f5a0b-b3f6-4cb6-9e02-db69e89d7135}",
                 "hidden": false,
+                "icon": "%USERPROFILE%\\.terminal-config\\icons\\powershell7.png",
                 "name": "Admin PowerShell 7",
                 "startingDirectory": "%USERPROFILE%",
                 "tabColor": "#0000FF"

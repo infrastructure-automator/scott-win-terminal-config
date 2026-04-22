@@ -88,7 +88,3 @@ function nonwork {
     Enable-NetAdapterBinding -Name $Physical_Network_Adapter.Name -ComponentID ms_tcpip6
     ipconfig /flushdns
 }
-
-## Update PATH Variable
-$env:PATH = "$env:PATH;$env:USERPROFILE\.local\bin"
-$env:CLAUDE_CODE_GIT_BASH_PATH = "$env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\bash.exe"
