@@ -1,37 +1,39 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions":
+    "actions": 
     [
-        {
-            "command": {
-                "action": "copy",
-                "singleLine": false
-            },
-            "id": "User.copy"
-        },
-        {
-            "command": {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "id": "User.splitPane.A6751878"
-        },
         {
             "command": "find",
             "id": "User.find"
         },
         {
-            "command":
+            "command": 
             {
-                "action": "newTab"
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
             },
-            "id": "User.newTab.5DEADB41"
+            "id": "User.splitPane"
         },
         {
             "command": "paste",
             "id": "User.paste"
+        },
+        {
+            "command": 
+            {
+                "action": "newTab"
+            },
+            "id": "User.newTab"
+        },
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "id": "User.copy"
         },
         {
             "command": "closePane",
@@ -40,8 +42,12 @@
     ],
     "keybindings":
     [
+        { "keys": "ctrl+f", "id": "User.find" },
         { "keys": "ctrl+c", "id": "User.copy" },
-        { "keys": "ctrl+p", "id": "User.paste" }
+        { "keys": "ctrl+v", "id": "User.paste" },
+        { "keys": "ctrl+w", "id": "User.closePane" },
+        { "keys": "ctrl+shift+d", "id": "User.splitPane" },
+        { "keys": "ctrl+shift+t", "id": "User.newTab" }
     ],
     "alwaysOnTop": false,
     "copyFormatting": "rtf",
